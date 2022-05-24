@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %}
+{% block body %}
+    
+
+<div class="container"></div>
+</div>
+
+</div>
+<form action="/" method="POST">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Todo title</title></label>
+    <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Todo description</label>
+    <input type="text" class="form-control" name="desc" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div class="container">
+  <table class="table">
+
+    </thead>
+    <tbody>
+      {% if allTodo|length == 0 %}
+      <div class="alert alert-dark" role="alert">
+        No Todos found! PLease add a Todo
+      </div>
+
+      {% else %}
+      <thead>
+        <tr>
+          <th scope="col">SNo</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Time</th>
+        </tr>
+        <thead>
+
+
+          {% for todo in allTodo %}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{todo.title}}</td>
+            <td>{{todo.desc}}</td>
+            <td>{{todo.date_created}}</td>
+            <td><a href="/update/{{todo.sno}}" type="button"
+                class="btn btn-outline-success btn-sm mx-1">Update</button>{{todo.sno}}</td>
+            <td><a href="/delete/{{todo.sno}}" type="button"
+                class="btn btn-outline-danger btn-sm mx-1">Delete</button>{{todo.sno}}</td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+
+
+    </tbody>
+  </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  {% endblock body %}
